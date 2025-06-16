@@ -1,4 +1,5 @@
 # Unreleased
+
 - Feature: Added support to load custom TLS certificates from a public certificate file and a private key file stored in `~/.evilginx/crt/sites/<hostname>/`. Will load `fullchain.pem` and `privkey.pem` pair or a combination of a `.pem`/`.crt` (public certificate) and a `.key` (private key) file. Make sure to run without `-developer` flag and disable autocert retrieval with `config autocert off`.
 - Feature: Added ability to disable automated TLS certificate retrieval from LetsEncrypt with `config autocert <on/off>`.
 - Feature: Evilginx will now properly recognize origin IP for requests coming from behind a reverse proxy (nginx/apache2/cloudflare/azure).
@@ -7,6 +8,7 @@
 - Fixed: Unauthorized redirects and blacklisting would be ignored for `proxy_hosts` with `session: false` (default) making it easy to detect evilginx by external scanners.
 
 # 3.2.0
+
 - Feature: URL redirects on successful token capture now work dynamically on every phishing page. Pages do not need to reload or redirect first for the redirects to happen.
 - Feature: Lures can now be paused for a fixed time duration with `lures pause <id>`. Useful when you want to briefly redirect your lure URL when you know sandboxes will try to scan them.
 - Feature: Added phishlet ability to intercept HTTP requests and return custom responses via a new `intercept` section.
@@ -21,11 +23,13 @@
 - Fixed: Removed `ua_filter` column from the lures list view. It is still viewable in lure detailed view.
 
 # 3.1.0
+
 - Feature: Listening IP and external IP can now be separated with `config ipv4 bind <bind_ipv4_addr>` and `config ipv4 external <external_ipv4_addr>` to help with properly setting up networking.
 - Fixed: Session cookies (cookies with no expiry date set) are now correctly captured every time. There is no need to specify `:always` key modifier for `auth_tokens` to capture them.
 - Fixed: Captured custom tokens are now displayed properly and values are not truncated.
 
 # 3.0.0
+
 - Feature: TLS certificates from LetsEncrypt will now get automatically renewed.
 - Feature: Automated retrieval and renewal of LetsEncrypt TLS certificates is now managed by `certmagic` library.
 - Feature: Authentication tokens can now be captured not only from cookies, but also from response body and HTTP headers.
@@ -48,6 +52,7 @@
 - Fixed: WebSocket connections are now properly proxied.
 
 # 2.4.0
+
 - Feature: Create and set up pre-phish HTML templates for your campaigns. Create your HTML file and place `{lure_url_html}` or `{lure_url_js}` in code to manage redirection to the phishing page with any form of user interaction. Command: `lures edit <id> template <template>`
 - Feature: Create customized hostnames for every phishing lure. Command: `lures edit <id> hostname <hostname>`.
 - Feature: Support for routing connection via SOCKS5 and HTTP(S) proxies. Command: `proxy`.
@@ -64,18 +69,22 @@
 - Increased the duration of whitelisting authorized connections for whole IP address from 15 seconds to 10 minutes.
 
 # 2.3.3
+
 - Fixed: Multiple concurrent map writes when whitelisting IPs during heavy loads.
 
 # 2.3.2
+
 - ACMEv2 support added to comply with LetsEncrypt requirements.
 - Fixed session cookie output to support EditThisCookie on the latest Chrome version.
 - Increased timeouts for proxying HTTP packets to 45 seconds.
 - Added support for Go modules.
 
 # 2.3.1
+
 - Redirection is now triggered only for responses with `text/html` content-type header.
 
 # 2.3.0
+
 - Proxy can now create most of required `sub_filters` on its own, making it much easier to create new phishlets.
 - Added lures, with which you can prepare custom phishing URLs with each having its own set of unique options (`help lures` for more info).
 - Added OpenGraph settings for lures, allowing to create enticing content for link previews.
@@ -84,9 +93,11 @@
 - Deprecated `landing_path` and replaced it with `login` section, which contains the domain and path for website's login page.
 
 # 2.2.1
+
 - Fixed: `type` with value `json` was not correctly activated when set under `credentials`.
 
 # 2.2.0
+
 - Now when any of `auth_urls` is triggered, the redirection will take place AFTER response cookies for that request are captured.
 - Regular expression groups working with `sub_filters`.
 - Phishlets are now listed in a table.
